@@ -4,7 +4,7 @@ import { Server } from "socket.io"
 const httpServer = createServer()
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://cinema-google.vercel.app/",
+    origin: "https://cinema-google.vercel.app",
     methods: ["GET", "POST"]
   }
 })
