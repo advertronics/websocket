@@ -58,8 +58,7 @@ const removePayment = id => {
   return onGoingPayments.filter(payment => payment.id != id)
 }
 
-safcomIo = io.of("/")
-safcomIo.on("connection", socket => {
+io.on("connection", socket => {
   socket.on("registerPayment", merchantId => {
     addNewPayment(merchantId, socket.id)
   })
@@ -68,7 +67,7 @@ safcomIo.on("connection", socket => {
     resultDesc = resultDesc
     receiver = getOnePayment(merchantId)
 
-    safcomIo.to(merchantRequestID).emit("eventId", { merchantRequestID, resultDesc, mpesaReceiptNumber })
+    io.to(merchantRequestID).emit("eventId", { merchantRequestID, resultDesc, mpesaReceiptNumber })
     console.log("receiver is: ", receiver)
 
     console.log("merchantId: ", merchantId)
