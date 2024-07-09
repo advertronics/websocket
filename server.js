@@ -58,7 +58,8 @@ const removePayment = id => {
   return onGoingPayments.filter(payment => payment.id != id)
 }
 
-io.on("connection", socket => {
+safcomIo = io.of("/")
+safcomIo.on("connection", socket => {
   socket.on("registerPayment", merchantId => {
     addNewPayment(merchantId, socket.id)
   })
